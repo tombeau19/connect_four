@@ -1,4 +1,13 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
+
+const ConnectBoard = styled.table`
+width: 100%
+`
+const TableRow = styled.tr`
+`
+
+
 
 class GameBoard extends Component {
 
@@ -14,9 +23,17 @@ class GameBoard extends Component {
 
     render() {
         return (
-            <div>
-                hello from GameBoard
-            </div>
+            <ConnectBoard>
+                {this.state.gameboard.map((arr) => {
+                    return (
+                        <TableRow>{arr.map((cell) => {
+                            return (
+                                <td>cell</td>
+                            )
+                        })}</TableRow>
+                    )
+                })}
+            </ConnectBoard>
         )
     }
 }
