@@ -17,23 +17,25 @@ class GameBoard extends Component {
                     [0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0],
-                    [0, 0, 0, 0, 0, 0, 0]]
+                    [0, 0, 0, 0, 0, 0, 0]],
+        playerOne: false,
+        playerTwo: false,
     }
 
 
     render() {
         return (
-            <ConnectBoard>
+            <table>
                 {this.state.gameboard.map((arr) => {
                     return (
-                        <TableRow>{arr.map((cell) => {
+                        <tr>{arr.map((cell) => {
                             return (
                                 <td>cell</td>
                             )
-                        })}</TableRow>
+                        })}</tr>
                     )
                 })}
-            </ConnectBoard>
+            </table>
         )
     }
 }
