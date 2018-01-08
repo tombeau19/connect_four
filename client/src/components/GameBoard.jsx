@@ -4,7 +4,9 @@ import styled from 'styled-components'
 const ConnectBoard = styled.table`
 width: 100%
 `
-const TableRow = styled.tr`
+const TableCell = styled.td`
+background-color: red;
+border: black;
 `
 
 
@@ -19,23 +21,32 @@ class GameBoard extends Component {
                     [0, 0, 0, 0, 0, 0, 0],
                     [0, 0, 0, 0, 0, 0, 0]],
         playerOne: false,
-        playerTwo: false,
+    }
+
+    playerOneClick = async (event) => {
+        await this.setState({playerOne: false})
+        break
+    }
+
+    playerTwoClick = async (event) => {
+        await this.setState({playerOne: true})
+        break
     }
 
 
     render() {
         return (
-            <table>
-                {this.state.gameboard.map((arr) => {
+            <ConnectBoard>
+                {this.state.gameboard.map((row) => {
                     return (
-                        <tr>{arr.map((cell) => {
+                        <tr>{row.map((cell) => {
                             return (
-                                <td>cell</td>
+                                <TableCell onClick = {this.state.playerOne ? this.playerOneClick : this.playerTwoClick}>{cell.id}a</TableCell>
                             )
                         })}</tr>
                     )
                 })}
-            </table>
+            </ConnectBoard>
         )
     }
 }
