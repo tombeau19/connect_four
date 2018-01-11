@@ -5,11 +5,9 @@ const ConnectBoard = styled.table`
 width: 100%
 `
 const TableCell = styled.td`
-background-color: red;
+background-color: white;
 border: black;
 `
-
-
 
 class GameBoard extends Component {
 
@@ -25,23 +23,29 @@ class GameBoard extends Component {
 
     playerOneClick = async (event) => {
         await this.setState({playerOne: false})
-        break
+        //this.setState({gameboard[i][j]: 1})
     }
 
     playerTwoClick = async (event) => {
+        if (this.state.playerOne === false) {
+            let newBoard = this.state.gameboard
+            newBoard[1][5] = 1
+            this.setState({gameboard: newBoard})
+            console.log(this.state.gameboard[1][5])
+        } else {
+            alert('cell taken')
+        }
         await this.setState({playerOne: true})
-        break
     }
-
 
     render() {
         return (
             <ConnectBoard>
-                {this.state.gameboard.map((row) => {
+                {this.state.gameboard.map((row, index) => {
                     return (
-                        <tr>{row.map((cell) => {
+                        <tr key={index}>{row.map((cell, index) => {
                             return (
-                                <TableCell onClick = {this.state.playerOne ? this.playerOneClick : this.playerTwoClick}>{cell.id}a</TableCell>
+                                <TableCell key={index} onClick = {this.state.playerOne ? this.playerOneClick : this.playerTwoClick}>{cell}</TableCell>
                             )
                         })}</tr>
                     )
