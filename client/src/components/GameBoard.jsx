@@ -13,44 +13,27 @@ class GameBoard extends Component {
 
     state = {
         gameboard: [[0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0]],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0]],
         playerOne: true,
     }
 
-    playerOneClick = async (event) => {
-        await this.setState({playerOne: false})
-    }
-
-    playerTwoClick = async (i, index) => {
-        if (this.state.playerOne === false) {
-            console.log(i, index)
-            // let newBoard = this.state.gameboard
-            // newBoard[i][index] = 2
-            // this.setState({gameboard: newBoard})
+    playerTurn = async (i, index) => {
+        if (this.state.playerOne === false && this.state.gameboard[index][i] === 0) {
+            let newBoard = this.state.gameboard
+            newBoard[index][i] = 2
+            await this.setState({gameboard: newBoard})
+            await this.setState({playerOne: true})
+        } else if (this.state.playerOne === true && this.state.gameboard[index][i] === 0){
+            let newBoard = this.state.gameboard
+            newBoard[index][i] = 1
+            await this.setState({gameboard: newBoard})
+            await this.setState({playerOne: false})
         } else {
             alert('cell taken')
-        }
-        await this.setState({ playerOne: true })
-    }
-
-    playerTurn = async (i, index) => {
-        //event.stopPropagation()
-        if (this.state.playerOne === false) {
-            console.log(i, index)
-            await this.setState({playerOne: true})
-            let newBoard = this.state.gameboard
-            newBoard[i][index] = 2
-            this.setState({gameboard: newBoard})
-        } else if (this.state.playerOne === true){
-            //console.log(i, index)
-            await this.setState({playerOne: false})
-            // let newBoard = this.state.gameboard
-            // newBoard[i][index] = 1
-            // this.setState({gameboard: newBoard})
         }
     }
 
