@@ -30,17 +30,16 @@ class GameBoard extends Component {
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: true })
             } else {
-                alert('start from bottom')
+                alert('place token in lowest available slot')
             }
         } else if (this.state.playerOne === true && this.state.gameboard[index][i] === 0) {
             if (index + 1 === 6 || this.state.gameboard[index + 1][i] !== 0) {
-                console.log(index)
                 const newBoard = this.state.gameboard
                 newBoard[index][i] = 'black'
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: false })
             } else {
-                alert('start from bottom')
+                alert('place token in lowest available slot')
             }
         } else {
             alert('cell taken')
