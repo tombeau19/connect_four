@@ -18,36 +18,52 @@ class GameBoard extends Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]],
-        playerOne: false,
+        playerOne: true,
     }
 
     playerOneClick = async (event) => {
-        await this.setState({ playerOne: false })
-        //this.setState({gameboard[i][j]: 1})
+        await this.setState({playerOne: false})
     }
 
-    playerTwoClick = async (event) => {
+    playerTwoClick = async (i, index) => {
         if (this.state.playerOne === false) {
-            let newBoard = this.state.gameboard
-            newBoard[1][5] = 1
-            this.setState({ gameboard: newBoard })
-            console.log(this.state.gameboard[1][5])
+            console.log(i, index)
+            // let newBoard = this.state.gameboard
+            // newBoard[i][index] = 2
+            // this.setState({gameboard: newBoard})
         } else {
             alert('cell taken')
         }
         await this.setState({ playerOne: true })
     }
 
+    playerTurn = async (i, index) => {
+        //event.stopPropagation()
+        if (this.state.playerOne === false) {
+            console.log(i, index)
+            await this.setState({playerOne: true})
+            let newBoard = this.state.gameboard
+            newBoard[i][index] = 2
+            this.setState({gameboard: newBoard})
+        } else if (this.state.playerOne === true){
+            //console.log(i, index)
+            await this.setState({playerOne: false})
+            // let newBoard = this.state.gameboard
+            // newBoard[i][index] = 1
+            // this.setState({gameboard: newBoard})
+        }
+    }
+
     render() {
         return (
             <ConnectBoard>
                 <tbody>
-                    {this.state.gameboard.map((row, i) => {
+                    {this.state.gameboard.map((row, index) => {
                         return (
-                            <tr key={i}>
-                                {row.map((cell, index) => {
+                            <tr key={index}>
+                                {row.map((cell, i) => {
                                     return (
-                                        <TableCell key={index} onClick={this.state.playerOne ? this.playerOneClick : this.playerTwoClick}>{i},{index}</TableCell>
+                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i}>{i}, {index}</TableCell>
                                     )
                                 })}
                             </tr>
