@@ -30,7 +30,7 @@ class GameBoard extends Component {
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: true })
                 await this.winAcross(i, index)
-                //await this.winUpAndDown(i, index)
+                await this.winUpAndDown(i, index)
             } else {
                 alert('place token in lowest available slot')
             }
@@ -41,7 +41,7 @@ class GameBoard extends Component {
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: false })
                 await this.winAcross(i, index)
-                //await this.winUpAndDown(i, index)
+                await this.winUpAndDown(i, index)
             } else {
                 alert('place token in lowest available slot')
             }
@@ -79,20 +79,25 @@ class GameBoard extends Component {
         })
     }
 
-    // winUpAndDown = (i, index) => {
-    //     const board = this.state.gameboard
-    //     board.map((row, index) => {
-    //         row.map((cell, i) => {
-    //             if (board[index][i] === 'red' && board[index + 1][i] === 'red' && board[index + 2][i] === 'red' && board[index + 3][i] === 'red') {
-    //                 alert('player 2 wins')
-    //                 this.clearBoard()
-    //             } if (board[index][i] === 'black' && board[index + 1][i] === 'black' && board[index + 2][i] === 'black' && board[index + 3][i] === 'black') {
-    //                 alert('player 1 wins')
-    //                 this.clearBoard()
-    //             }
-    //         })
-    //     })
-    // }
+    winUpAndDown = (i, index) => {
+        const board = this.state.gameboard
+        //console.log('hit')
+        // console.log(board[index][i])
+        // console.log(board[index - 1][i])
+        // console.log(board[index - 2][i])
+        // console.log(board[index + 3][i])
+        board.map((row, index) => {
+            row.map((cell, i) => {
+                if (board[index][i] === 'red' && board[index - 1][i] === 'red' && board[index - 2][i] === 'red' && board[index - 3][i] === 'red') {
+                    alert('player 2 wins')
+                    this.clearBoard()
+                } if (board[index][i] === 'black' && board[index - 1][i] === 'black' && board[index - 2][i] === 'black' && board[index - 3][i] === 'black') {
+                    alert('player 1 wins')
+                    this.clearBoard()
+                }
+            })
+        })
+    }
 
     render() {
         return (
