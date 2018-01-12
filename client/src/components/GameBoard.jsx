@@ -5,7 +5,7 @@ const ConnectBoard = styled.table`
 width: 50%
 `
 const TableCell = styled.td`
-border: black;
+border-style: solid;
 width: 50px;
 height: 50px;
 `
@@ -29,6 +29,8 @@ class GameBoard extends Component {
                 newBoard[index][i] = 'red'
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: true })
+                await this.winAcross(i, index)
+                //await this.winUpAndDown(i, index)
             } else {
                 alert('place token in lowest available slot')
             }
@@ -38,6 +40,8 @@ class GameBoard extends Component {
                 newBoard[index][i] = 'black'
                 await this.setState({ gameboard: newBoard })
                 await this.setState({ playerOne: false })
+                await this.winAcross(i, index)
+                //await this.winUpAndDown(i, index)
             } else {
                 alert('place token in lowest available slot')
             }
@@ -45,6 +49,50 @@ class GameBoard extends Component {
             alert('cell taken')
         }
     }
+
+    clearBoard = () => {
+        const resetBoard = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]
+        ]
+        this.setState({ gameboard: resetBoard })
+        this.setState({ playerOne: true })
+    }
+
+    //win conditions
+    winAcross = (i, index) => {
+        const board = this.state.gameboard
+        board.map((row, index) => {
+            row.map((cell, i) => {
+                if (board[index][i] === 'red' && board[index][i + 1] === 'red' && board[index][i + 2] === 'red' && board[index][i + 3] === 'red') {
+                    alert('player 2 wins')
+                    this.clearBoard()
+                } if (board[index][i] === 'black' && board[index][i + 1] === 'black' && board[index][i + 2] === 'black' && board[index][i + 3] === 'black') {
+                    alert('player 1 wins')
+                    this.clearBoard()
+                }
+            })
+        })
+    }
+
+    // winUpAndDown = (i, index) => {
+    //     const board = this.state.gameboard
+    //     board.map((row, index) => {
+    //         row.map((cell, i) => {
+    //             if (board[index][i] === 'red' && board[index + 1][i] === 'red' && board[index + 2][i] === 'red' && board[index + 3][i] === 'red') {
+    //                 alert('player 2 wins')
+    //                 this.clearBoard()
+    //             } if (board[index][i] === 'black' && board[index + 1][i] === 'black' && board[index + 2][i] === 'black' && board[index + 3][i] === 'black') {
+    //                 alert('player 1 wins')
+    //                 this.clearBoard()
+    //             }
+    //         })
+    //     })
+    // }
 
     render() {
         return (
@@ -55,7 +103,7 @@ class GameBoard extends Component {
                             <tr key={index}>
                                 {row.map((cell, i) => {
                                     return (
-                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}>{cell}</TableCell>
+                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}></TableCell>
                                     )
                                 })}
                             </tr>
