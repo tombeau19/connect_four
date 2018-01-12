@@ -20,21 +20,28 @@ class GameBoard extends Component {
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0]],
         playerOne: true,
-        color: 'white',
-        id: ''
     }
 
     playerTurn = async (i, index) => {
         if (this.state.playerOne === false && this.state.gameboard[index][i] === 0) {
-            let newBoard = this.state.gameboard
-            newBoard[index][i] = 'two'
-            await this.setState({ gameboard: newBoard})
-            await this.setState({ playerOne: true })
+            if (index + 1 === 6 || this.state.gameboard[index + 1][i] !== 0) {
+                const newBoard = this.state.gameboard
+                newBoard[index][i] = 'red'
+                await this.setState({ gameboard: newBoard })
+                await this.setState({ playerOne: true })
+            } else {
+                alert('start from bottom')
+            }
         } else if (this.state.playerOne === true && this.state.gameboard[index][i] === 0) {
-            let newBoard = this.state.gameboard
-            newBoard[index][i] = 'one'
-            await this.setState({ gameboard: newBoard})
-            await this.setState({ playerOne: false })
+            if (index + 1 === 6 || this.state.gameboard[index + 1][i] !== 0) {
+                console.log(index)
+                const newBoard = this.state.gameboard
+                newBoard[index][i] = 'black'
+                await this.setState({ gameboard: newBoard })
+                await this.setState({ playerOne: false })
+            } else {
+                alert('start from bottom')
+            }
         } else {
             alert('cell taken')
         }
