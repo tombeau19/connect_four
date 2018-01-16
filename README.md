@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Connect Four
 
-Things you may want to cover:
+Technologies used:
 
-* Ruby version
+* Ruby on Rails
 
-* System dependencies
+* React
 
-* Configuration
+* Styled Components
 
-* Database creation
+* Postgresql
 
-* Database initialization
+* CSS
 
-* How to run the test suite
+## Version 2.0 (to-do)
 
-* Services (job queues, cache servers, search engines, etc.)
+* The column win detection will be updated to include 4 in a row starting from top row
 
-* Deployment instructions
+* Tie detection
 
-* ...
+* integrate back-end to track player records
+
+* One Player Games
+
+* Game API integration to bring in 'Characters' and a 'Boss', the 'Boss' will represenet the AI for a one player game
+
+## Trello Board (user stories) --
+
+* https://trello.com/b/kJaS9RNn
+
+## Deployed App --
+
+* 
