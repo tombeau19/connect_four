@@ -18,6 +18,8 @@ Technologies used:
 
 * The column win detection will be updated to include 4 in a row starting from top row
 
+* Diagonal Win Detection!!!
+
 * Tie detection
 
 * integrate back-end to track player records
