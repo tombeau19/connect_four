@@ -84,10 +84,10 @@ class GameBoard extends Component {
         board.map((row, index) => {
             row.map((cell, i) => {
                 console.log(i)
-                if (board[index][i] === 'red' && board[index - 1][i] === 'red' /*&& board[index - 2][i] === 'red'*/ && index - 3 === -3) {
+                if (board[index][i] === 'red' && board[index - 1][i] === 'red' && board[index - 2][i] === 'red' && board[index - 3][i] === 'red') {
                     alert('player 2 wins')
                     this.clearBoard()
-                } else if (board[index][i] === 'black' /*&& board[index - 1][i] === 'black' && board[index - 2][i] === 'black'*/ && index - 3 === -3) {
+                } else if (board[index][i] === 'black' && board[index - 1][i] === 'black' && board[index - 2][i] === 'black' && board[index - 3][i] === 'red') {
                     alert('player 1 wins')
                     this.clearBoard() 
                 } else if (board[index][i] === 'red' && board[index - 1][i] === 'red' && board[index - 2][i] === 'red' && board[index - 3][i] === 'red') {
@@ -103,6 +103,7 @@ class GameBoard extends Component {
 
     render() {
         return (
+            <div>
             <ConnectBoard>
                 <tbody>
                     {this.state.gameboard.map((row, index) => {
@@ -110,7 +111,7 @@ class GameBoard extends Component {
                             <tr key={index}>
                                 {row.map((cell, i) => {
                                     return (
-                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}>{i}, {index}</TableCell>
+                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}></TableCell>
                                     )
                                 })}
                             </tr>
@@ -118,6 +119,8 @@ class GameBoard extends Component {
                     })}
                 </tbody>
             </ConnectBoard>
+            {this.state.playerOne ? <div>Player 1's turn (black)</div> : <div>Player 2's turn (red)</div>}
+            </div>
         )
     }
 }

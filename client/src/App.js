@@ -9,8 +9,8 @@ class App extends Component {
       <Router>
         <div>
           <Switch>
-            <Route exact path="/" component={Characters}/>
-            <Route path="/game" component={GameBoard}/>
+            <Route exact path="/" component={GameBoard}/>
+            {/* <Route path="/game" component={GameBoard}/> */}
           </Switch>
         </div>
       </Router>
