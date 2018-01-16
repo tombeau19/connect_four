@@ -14,7 +14,7 @@ Technologies used:
 
 * CSS
 
-## Version 2.0 (to-do)
+## Version 2.0 (to-do list)
 
 * The column win detection will be updated to include 4 in a row starting from top row
 
@@ -24,7 +24,7 @@ Technologies used:
 
 * One Player Games
 
-* Game API integration to bring in 'Characters' and a 'Boss', the 'Boss' will represenet the AI for a one player game
+* Game API integration (for ex. Mario Brothers or Marvel Comics) to bring in 'Characters' and a 'Boss', the 'Boss' will represenet the AI for a one player game
 
 ## Trello Board (user stories) --
 
@@ -32,4 +32,4 @@ Technologies used:
 
 ## Deployed App --
 
-* 
+* https://connect4tomdanbeau.herokuapp.com/
