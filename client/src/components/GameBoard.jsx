@@ -83,7 +83,7 @@ class GameBoard extends Component {
         const board = this.state.gameboard
         board.map((row, index) => {
             row.map((cell, i) => {
-                console.log(i)
+                console.log(index, i)
                 if (board[index][i] === 'red' && board[index - 1][i] === 'red' && board[index - 2][i] === 'red' && board[index - 3][i] === 'red') {
                     alert('player 2 wins')
                     this.clearBoard()
@@ -111,7 +111,7 @@ class GameBoard extends Component {
                             <tr key={index}>
                                 {row.map((cell, i) => {
                                     return (
-                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}></TableCell>
+                                        <TableCell onClick={(event) => this.playerTurn(i, index)} key={i} className={cell}>{i}, {index}</TableCell>
                                     )
                                 })}
                             </tr>
